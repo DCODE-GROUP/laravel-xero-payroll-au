@@ -3,6 +3,7 @@
 namespace Dcodegroup\LaravelXeroPayrollAu\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 
 class InstallCommand extends Command
 {
@@ -25,6 +26,20 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        $this->info('Make sure the dcodegroup/laravel-configuration package has the database table installed');
+
+        /**
+         * Need a way to check that the  CreateConfigurationTable does not exist in migrations
+         */
+        if (! Schema::hasTable('configurations') && ! class_exists('CreateConfigurationTable')) {
+            $this->comment('Publishing Laravel Configurations Migrations');
+            $this->callSilent('vendor:publish', ['--tag' => 'laravel-configurations-migrations']);
+
+            $this->call('migrate');
+            $this->comment('Laravel Configurations Migrations have been run');
+
+        }
+
         //if (! Schema::hasTable('xero_tokens') && class_exists('CreateXeroTokensTable')) {
         //    $this->comment('Publishing Laravel Xero Migrations');
         //    $this->callSilent('vendor:publish', ['--tag' => 'laravel-xero-oauth-migrations']);

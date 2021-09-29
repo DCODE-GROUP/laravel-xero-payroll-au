@@ -2,16 +2,14 @@
 
 namespace Dcodegroup\LaravelXeroPayrollAu;
 
-use XeroPHP\Application;
+use Dcodegroup\LaravelXeroOauth\BaseXeroService;
+use XeroPHP\Models\PayrollAU\PayrollCalendar;
 
-class BaseXeroPayrollAuService
+class BaseXeroPayrollAuService extends BaseXeroService
 {
-    public Application $xeroClient;
-
-    public function __construct(Application $xeroClient)
+    public function getPayrollCalendars()
     {
-        $this->xeroClient = $xeroClient;
+        return $this->xeroClient->getModel(PayrollCalendar::class);
     }
-    
-    
+
 }

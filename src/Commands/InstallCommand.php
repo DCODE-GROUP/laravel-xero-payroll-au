@@ -26,14 +26,14 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        if (! Schema::hasTable('xero_tokens') && ! class_exists('CreateXeroTokensTable')) {
-            $this->comment('Publishing Laravel Xero Migrations');
-            $this->callSilent('vendor:publish', ['--tag' => 'laravel-xero-oauth-migrations']);
-        }
-        
-        $this->comment('Publishing Laravel Xero Configuration...');
-        $this->callSilent('vendor:publish', ['--tag' => 'laravel-xero-oauth-config']);
-
-        $this->info('Laravel Xero scaffolding installed successfully.');
+        //if (! Schema::hasTable('xero_tokens') && class_exists('CreateXeroTokensTable')) {
+        //    $this->comment('Publishing Laravel Xero Migrations');
+        //    $this->callSilent('vendor:publish', ['--tag' => 'laravel-xero-oauth-migrations']);
+        //}
+        //
+        //$this->comment('Publishing Laravel Xero Configuration...');
+        //$this->callSilent('vendor:publish', ['--tag' => 'laravel-xero-oauth-config']);
+        //
+        //$this->info('Laravel Xero scaffolding installed successfully.');
     }
 }

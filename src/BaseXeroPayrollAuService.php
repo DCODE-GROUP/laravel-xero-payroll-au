@@ -12,6 +12,4 @@ class BaseXeroPayrollAuService
     {
         $this->xeroClient = $xeroClient;
     }
-    
-    
 }

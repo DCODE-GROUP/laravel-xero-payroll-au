@@ -37,7 +37,7 @@ class InstallCommand extends Command
         /**
          * Need a way to check that the  CreateConfigurationTable does not exist in migrations
          */
-        if (!Schema::hasTable('configurations') && !class_exists('CreateConfigurationTable')) {
+        if (! Schema::hasTable('configurations') && ! class_exists('CreateConfigurationTable')) {
             $this->comment('Publishing Laravel Configurations Migrations');
             $this->callSilent('vendor:publish', ['--tag' => 'laravel-configurations-migrations']);
 
@@ -50,50 +50,49 @@ class InstallCommand extends Command
         if (Configuration::byKey('xero_leave_types')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Leave Types',
-                                      'key'   => 'xero_leave_types',
+                                      'name' => 'Leave Types',
+                                      'key' => 'xero_leave_types',
                                   ]);
         }
 
         if (Configuration::byKey('xero_earnings_rates')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Earnings Rates',
-                                      'key'   => 'xero_earnings_rates',
+                                      'name' => 'Earnings Rates',
+                                      'key' => 'xero_earnings_rates',
                                   ]);
         }
 
         if (Configuration::byKey('xero_payroll_calendars')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Payroll Calendars',
-                                      'key'   => 'xero_payroll_calendars',
+                                      'name' => 'Payroll Calendars',
+                                      'key' => 'xero_payroll_calendars',
                                   ]);
         }
 
         if (Configuration::byKey('xero_default_payroll_')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Default Payroll Calendar',
-                                      'key'   => 'xero_default_payroll_calendar',
+                                      'name' => 'Default Payroll Calendar',
+                                      'key' => 'xero_default_payroll_calendar',
                                   ]);
         }
 
         if (Configuration::byKey('xero_default_time_and_a_half')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Overtime earnings rate (Time and a half)',
-                                      'key'   => 'xero_default_time_and_a_half',
+                                      'name' => 'Overtime earnings rate (Time and a half)',
+                                      'key' => 'xero_default_time_and_a_half',
                                   ]);
         }
 
         if (Configuration::byKey('xero_default_double_time')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Overtime earnings rate (Double time)',
-                                      'key'   => 'xero_default_double_time',
+                                      'name' => 'Overtime earnings rate (Double time)',
+                                      'key' => 'xero_default_double_time',
                                   ]);
         }
-
     }
 }

@@ -5,7 +5,6 @@ namespace Dcodegroup\LaravelXeroPayrollAu;
 use Dcodegroup\LaravelXeroOauth\BaseXeroService;
 use Dcodegroup\LaravelXeroPayrollAu\Commands\InstallCommand;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -64,11 +63,11 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group([
-                         'prefix'     => config('laravel-xero-payroll-au.path'),
-                         'as'         => Str::slug(config('laravel-xero-payroll-au.path'), '_') . '.',
+                         'prefix' => config('laravel-xero-payroll-au.path'),
+                         'as' => Str::slug(config('laravel-xero-payroll-au.path'), '_') . '.',
                          'middleware' => config('laravel-xero-payroll-au.middleware', 'web'),
                      ], function () {
-            $this->loadRoutesFrom(__DIR__ . '/../routes/xero_payroll_au.php');
-        });
+                         $this->loadRoutesFrom(__DIR__ . '/../routes/xero_payroll_au.php');
+                     });
     }
 }

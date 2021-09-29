@@ -2,12 +2,11 @@
 
 namespace Dcodegroup\LaravelXeroPayrollAu;
 
-use Dcodegroup\LaravelXeroOauth\BaseXeroService;
 use Dcodegroup\LaravelXeroPayrollAu\Commands\InstallCommand;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use XeroPHP\Application;
 
 class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
 {
@@ -32,7 +31,7 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/laravel-xero-payroll-au.php', 'laravel-xero-payroll-au');
 
         $this->app->bind(BaseXeroPayrollAuService::class, function () {
-            return new BaseXeroPayrollAuService(resolve(BaseXeroService::class));
+            return new BaseXeroPayrollAuService(resolve(Application::class));
         });
     }
 

@@ -2,14 +2,14 @@
 
 namespace Dcodegroup\LaravelXeroPayrollAu;
 
-//use XeroPHP\Application;
+use XeroPHP\Application;
 
 class BaseXeroPayrollAuService
 {
-    //public Application $xeroClient;
-    //
-    //public function __construct(Application $xeroClient)
-    //{
-    //    $this->xeroClient = $xeroClient;
-    //}
+    public Application $xeroClient;
+
+    public function __construct(Application $xeroClient)
+    {
+        $this->xeroClient = $xeroClient;
+    }
 }

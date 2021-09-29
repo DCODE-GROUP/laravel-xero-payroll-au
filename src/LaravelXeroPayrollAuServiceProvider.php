@@ -3,7 +3,7 @@
 namespace Dcodegroup\LaravelXeroPayrollAu;
 
 use Dcodegroup\LaravelXeroOauth\BaseXeroService;
-use Dcodegroup\LaravelXeroOauth\Commands\InstallCommand;
+use Dcodegroup\LaravelXeroPayrollAu\Commands\InstallCommand;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelXeroPayrollAuServiceProvider extends ServiceProvider

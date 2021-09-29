@@ -40,7 +40,6 @@ class InstallCommand extends Command
 
             $this->call('migrate');
             $this->comment('Laravel Configurations Migrations have been run');
-
         }
 
         $this->info('Store the configuration keys for this package');

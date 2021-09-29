@@ -11,5 +11,4 @@ class BaseXeroPayrollAuService extends BaseXeroService
     {
         return $this->xeroClient->getModel(PayrollCalendar::class);
     }
-
 }

@@ -34,7 +34,7 @@ class InstallCommand extends Command
         /**
          * Need a way to check that the  CreateConfigurationTable does not exist in migrations
          */
-        if (!Schema::hasTable('configurations') && !class_exists('CreateConfigurationTable')) {
+        if (! Schema::hasTable('configurations') && ! class_exists('CreateConfigurationTable')) {
             $this->comment('Publishing Laravel Configurations Migrations');
             $this->callSilent('vendor:publish', ['--tag' => 'laravel-configurations-migrations']);
 
@@ -47,31 +47,29 @@ class InstallCommand extends Command
         if (Configuration::byKey('xero_leave_types')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Xero Leave Types',
+                                      'name' => 'Xero Leave Types',
                                   ]);
         }
 
         if (Configuration::byKey('xero_earnings_rates')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Xero Earnings Rates',
+                                      'name' => 'Xero Earnings Rates',
                                   ]);
         }
 
         if (Configuration::byKey('xero_payroll_calendars')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Xero Payroll Calendars',
+                                      'name' => 'Xero Payroll Calendars',
                                   ]);
         }
 
         if (Configuration::byKey('xero_default_payroll_calendar')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name'  => 'Xero Default Payroll Calendar',
+                                      'name' => 'Xero Default Payroll Calendar',
                                   ]);
         }
-
     }
 }
-

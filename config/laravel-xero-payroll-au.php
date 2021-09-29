@@ -29,4 +29,14 @@ return [
         'web',
         'auth',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Laravel Xero Payroll AU Job Queue
+    |--------------------------------------------------------------------------
+    |
+    | This will allow you to configure queue to use for background jobs
+    |
+    */
+    'queue' => env('LARAVEL_XERO_PAYROLL_AU_QUEUE', 'default'),
 ];

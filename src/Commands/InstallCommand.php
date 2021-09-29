@@ -37,7 +37,6 @@ class InstallCommand extends Command
 
             $this->call('migrate');
             $this->comment('Laravel Configurations Migrations have been run');
-
         }
 
         //if (! Schema::hasTable('xero_tokens') && class_exists('CreateXeroTokensTable')) {

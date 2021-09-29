@@ -4,7 +4,10 @@ namespace Dcodegroup\LaravelXeroPayrollAu;
 
 use Dcodegroup\LaravelXeroOauth\BaseXeroService;
 use Dcodegroup\LaravelXeroPayrollAu\Commands\InstallCommand;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
 {
@@ -15,6 +18,8 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
     {
         $this->offerPublishing();
         $this->registerCommands();
+        $this->registerResources();
+        $this->registerRoutes();
     }
 
     /**
@@ -24,9 +29,21 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-xero-payroll-au.php', 'laravel-xero-payroll-au');
+
         $this->app->bind(BaseXeroPayrollAuService::class, function () {
             return new BaseXeroPayrollAuService(resolve(BaseXeroService::class));
         });
+    }
+
+    /**
+     * Setup the resource publishing groups for Dcodegroup Xero oAuth.
+     *
+     * @return void
+     */
+    protected function offerPublishing()
+    {
+        $this->publishes([__DIR__ . '/../config/laravel-xero-payroll-au.php' => config_path('laravel-xero-payroll-au.php')], 'laravel-xero-payroll-au-config');
     }
 
     protected function registerCommands()
@@ -38,21 +55,20 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Setup the resource publishing groups for Dcodegroup Xero oAuth.
-     *
-     * @return void
-     */
-    protected function offerPublishing()
+    protected function registerResources()
     {
-        //if (! Schema::hasTable('xero_tokens') && ! class_exists('CreateXeroTokensTable')) {
-        //    $timestamp = date('Y_m_d_His', time());
-        //
-        //    $this->publishes([
-        //                         __DIR__ . '/../database/migrations/create_xero_tokens_table.php.stub.php' => database_path('migrations/' . $timestamp . '_create_xero_tokens_table.php'),
-        //                     ], 'laravel-xero-oauth-migrations');
-        //}
-        //
-        //$this->publishes([__DIR__ . '/../config/laravel-xero-oauth.php' => config_path('laravel-xero-oauth.php')], 'laravel-xero-oauth-config');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'xero-payroll-au-translations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'xero-payroll-au-views');
+    }
+
+    protected function registerRoutes()
+    {
+        Route::group([
+                         'prefix'     => config('laravel-xero-payroll-au.path'),
+                         'as'         => Str::slug(config('laravel-xero-payroll-au.path'), '_') . '.',
+                         'middleware' => config('laravel-xero-payroll-au.middleware', 'web'),
+                     ], function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/xero_payroll_au.php');
+        });
     }
 }

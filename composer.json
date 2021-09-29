@@ -27,7 +27,7 @@
   "require": {
     "php": "^7.4|^8.0",
     "dcodegroup/laravel-xero-oauth": "^1.0",
-    "dcodegroup/laravel-configuration": "@dev",
+    "dcodegroup/laravel-configuration": "^0.0.1",
     "laravel/framework": "^7.0  | ^8.0"
   },
   "require-dev": {

@@ -40,7 +40,7 @@
                                 <select name="xero_default_payroll_calendar" id="xero_default_payroll_calendar">
                                     <option>@lang('xero-payroll-au-translations::xero-payroll-au.placeholder.default_select')</option>
                                     @foreach($configurations->where('key', 'xero_payroll_calendars')->pluck('value')->flatten(1)->toArray() as $option)
-                                        <option value="{{ data_get($option, 'PayrollCalendarID') }}">{{ data_get($option, 'Name') }}</option>
+                                        <option value="{{ data_get($option, 'PayrollCalendarID') }}" {{ $configurations->where('key', 'xero_default_payroll_calendar')->pluck('value')->first() == data_get($option, 'PayrollCalendarID') ? ' selected' : '' }}>{{ data_get($option, 'Name') }}</option>
                                     @endforeach
                                 </select>
                             </td>
@@ -53,7 +53,7 @@
                                 <select name="xero_default_time_and_a_half" id="xero_default_time_and_a_half">
                                     <option>@lang('xero-payroll-au-translations::xero-payroll-au.placeholder.default_select')</option>
                                     @foreach($configurations->where('key', 'xero_earnings_rates')->pluck('value')->flatten(1)->toArray() as $option)
-                                        <option value="{{ data_get($option, 'EarningsRateID') }}">{{ data_get($option, 'Name') }}</option>
+                                        <option value="{{ data_get($option, 'EarningsRateID') }}" {{ $configurations->where('key', 'xero_default_time_and_a_half')->pluck('value')->first() == data_get($option, 'EarningsRateID') ? ' selected' : '' }}>{{ data_get($option, 'Name') }}</option>
                                     @endforeach
                                 </select>
                             </td>
@@ -66,7 +66,7 @@
                                 <select name="xero_default_double_time" id="xero_default_double_time">
                                     <option>@lang('xero-payroll-au-translations::xero-payroll-au.placeholder.default_select')</option>
                                     @foreach($configurations->where('key', 'xero_earnings_rates')->pluck('value')->flatten(1)->toArray() as $option)
-                                        <option value="{{ data_get($option, 'EarningsRateID') }}">{{ data_get($option, 'Name') }}</option>
+                                        <option value="{{ data_get($option, 'EarningsRateID') }}" {{ $configurations->where('key', 'xero_default_double_time')->pluck('value')->first() == data_get($option, 'EarningsRateID') ? ' selected' : '' }}>{{ data_get($option, 'Name') }}</option>
                                     @endforeach
                                 </select>
                             </td>

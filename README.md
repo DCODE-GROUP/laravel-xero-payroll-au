@@ -28,6 +28,7 @@ php artsian migrate
 
 Most of configuration has been set the fair defaults. However you can review the configuration file at `config/laravel-xero-payroll-au.php` and adjust as needed
 
+<p align="center"><img src="/art/config.png" alt="Preview of the configuration screen"></p>
 
 ## Usage
 

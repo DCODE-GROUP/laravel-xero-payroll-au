@@ -2,6 +2,7 @@
 
 namespace Dcodegroup\LaravelXeroPayrollAu\Jobs;
 
+use Dcodegroup\LaravelConfiguration\Models\Configuration;
 use Dcodegroup\LaravelXeroPayrollAu\BaseXeroPayrollAuService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,8 +14,6 @@ class SyncPayrollConfigurationOptions implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected BaseXeroPayrollAuService $service;
-
     /**
      * Create a new job instance.
      *
@@ -23,7 +22,6 @@ class SyncPayrollConfigurationOptions implements ShouldQueue
     public function __construct()
     {
         $this->queue = config('laravel-xero-payroll-au.queue');
-        $this->service = resolve(BaseXeroPayrollAuService::class);
     }
 
     /**
@@ -33,6 +31,15 @@ class SyncPayrollConfigurationOptions implements ShouldQueue
      */
     public function handle()
     {
-        $calendar = $this->service->getPayrollCalendars();
+        $service = resolve(BaseXeroPayrollAuService::class);
+
+        $calendars = $service->getPayrollCalendars();
+        Configuration::byKey('xero_payroll_calendars')->update(['value' => $calendars->toArray()]);
+
+        $leaveTypes = $service->getLeaveTypes();
+        Configuration::byKey('xero_leave_types')->update(['value' => $leaveTypes->toArray()]);
+
+        $earningRates = $service->getEarningRates();
+        Configuration::byKey('xero_earnings_rates')->update(['value' => $earningRates->toArray()]);
     }
 }

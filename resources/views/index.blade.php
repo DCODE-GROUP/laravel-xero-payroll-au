@@ -21,19 +21,20 @@
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="font-semibold text-xl text-gray-800 leading-tight">@lang('xero-payroll-au-translations::xero-payroll-au.heading')</div>
 
-            <div class="mt-2 flex">
+            <div>
 
                 <a href="{{ route('xero_payroll.sync') }}"
-                   class="text-blue-400 underline">@lang('xero-payroll-au-translations::xero-payroll-au.buttons.sync')</a>
+                   class="px-4 py-2 rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-blue-600 bg-blue-50 hover:text-blue-800 hover:bg-blue-100 active:bg-blue-200 focus:ring-blue-300">@lang('xero-payroll-au-translations::xero-payroll-au.buttons.sync')
+                </a>
 
                 <br>
 
                 <form action="{{ route('xero_payroll.update') }}" method="POST">
                     @csrf
-                    <table class="table-auto">
+                    <table class="table-auto w-full border-collapse">
                         <tbody>
                         <tr>
-                            <td>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                                 {{ $configurations->where('key', 'xero_default_payroll_calendar')->pluck('name')->first() }}
                             </td>
                             <td>
@@ -46,7 +47,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                                 {{ $configurations->where('key', 'xero_default_time_and_a_half')->pluck('name')->first() }}
                             </td>
                             <td>
@@ -59,7 +60,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                                 {{ $configurations->where('key', 'xero_default_double_time')->pluck('name')->first() }}
                             </td>
                             <td>
@@ -72,7 +73,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ $configurations->where('key', 'xero_payroll_calendars')->pluck('name')->first() }}</td>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                {{ $configurations->where('key', 'xero_payroll_calendars')->pluck('name')->first() }}
+                            </td>
                             <td>
 
                                 <ul>
@@ -84,11 +87,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                                 {{ $configurations->where('key', 'xero_earnings_rates')->pluck('name')->first() }}
                             </td>
                             <td>
-                                <ul>
+                                <ul class="list-none">
                                     @foreach($configurations->where('key', 'xero_earnings_rates')->pluck('value')->flatten(1)->toArray() as $item)
                                         <li>{{ data_get($item, 'Name') }}</li>
                                     @endforeach
@@ -97,7 +100,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                                 {{ $configurations->where('key', 'xero_leave_types')->pluck('name')->first() }}
                             </td>
                             <td>
@@ -113,7 +116,7 @@
                         </tbody>
                     </table>
 
-                    <button type="submit" value="save">@lang('xero-payroll-au-translations::xero-payroll-au.buttons.submit')</button>
+                    <button type="submit" value="save" class="px-4 py-2 rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-blue-600 bg-blue-50 hover:text-blue-800 hover:bg-blue-100 active:bg-blue-200 focus:ring-blue-300">@lang('xero-payroll-au-translations::xero-payroll-au.buttons.submit')</button>
                 </form>
 
             </div>

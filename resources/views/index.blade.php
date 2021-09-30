@@ -28,69 +28,93 @@
 
                 <br>
 
-                @dump($configurations);
-
+                {{--                @dump($configurations)--}}
 
                 <form action="{{ route('xero_payroll.update') }}" method="POST">
                     @csrf
-                <table class="table-auto">
-                    <tbody>
-                    <tr>
-                        <td>{{ $configurations->where('key', 'xero_default_payroll_calendar')->pluck('name') }}</td>
-                        <td>
-                            <select name="xero_default_payroll_calendar" id="xero_default_payroll_calendar">
-                                @foreach($configurations->where('key', 'xero_default_payroll_calendar')->pluck('value')->toArray() as $option)
-                                    <option value="">value</option>
+                    <table class="table-auto">
+                        <tbody>
+                        <tr>
+                            <td>
+                                {{ $configurations->where('key', 'xero_default_payroll_calendar')->pluck('name')->first() }}
+                            </td>
+                            <td>
+                                {{--                            @dump($configurations->where('key', 'xero_payroll_calendars')->pluck('value')->flatten(1)->toArray())--}}
+                                {{--                            @dump($configurations->where('key', 'xero_payroll_calendars')->pluck('value')->flatten(1))--}}
+                                {{--                            @dump($configurations->where('key', 'xero_payroll_calendars')->pluck('value'))--}}
+                                <select name="xero_default_payroll_calendar" id="xero_default_payroll_calendar">
+
+                                    @foreach($configurations->where('key', 'xero_payroll_calendars')->pluck('value')->flatten(1)->toArray() as $option)
+                                        <option value="{{ data_get($option, 'PayrollCalendarID') }}">{{ data_get($option, 'Name') }}</option>
                                     @endforeach
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{{ $configurations->where('key', 'xero_default_time_and_a_half')->pluck('name') }}</td>
-                        <td>
-                            <select name="xero_default_time_and_a_half" id="xero_default_time_and_a_half">
-                                @foreach($configurations->where('key', 'xero_default_time_and_a_half')->pluck('value')->toArray() as $option)
-                                    <option value="">value</option>
-                                @endforeach
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{{ $configurations->where('key', 'xero_default_double_time')->pluck('name') }}</td>
-                        <td>
-                            <select name="xero_default_double_time" id="xero_default_double_time">
-                                @foreach($configurations->where('key', 'xero_default_double_time')->pluck('value')->toArray() as $option)
-                                    <option value="">value</option>
-                                @endforeach
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{ $configurations->where('key', 'xero_default_time_and_a_half')->pluck('name')->first() }}
+                            </td>
+                            <td>
+                                <select name="xero_default_time_and_a_half" id="xero_default_time_and_a_half">
+                                        @foreach($configurations->where('key', 'xero_earnings_rates')->pluck('value')->flatten(1)->toArray() as $option)
+                                            <option value="{{ data_get($option, 'EarningsRateID') }}">{{ data_get($option, 'Name') }}</option>
+                                        @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{ $configurations->where('key', 'xero_default_double_time')->pluck('name')->first() }}
+                            </td>
+                            <td>
+                                <select name="xero_default_double_time" id="xero_default_double_time">
+                                    @foreach($configurations->where('key', 'xero_earnings_rates')->pluck('value')->flatten(1)->toArray() as $option)
+                                        <option value="{{ data_get($option, 'EarningsRateID') }}">{{ data_get($option, 'Name') }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ $configurations->where('key', 'xero_payroll_calendars')->pluck('name')->first() }}</td>
+                            <td>
+
+                                <ul>
+                                    @foreach($configurations->where('key', 'xero_payroll_calendars')->pluck('value')->flatten(1)->toArray() as $item)
+                                        <li>{{ data_get($item, 'Name') }}</li>
+                                    @endforeach
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{ $configurations->where('key', 'xero_earnings_rates')->pluck('name')->first() }}
+                            </td>
+                            <td>
+                                <ul>
+                                    @foreach($configurations->where('key', 'xero_earnings_rates')->pluck('value')->flatten(1)->toArray() as $item)
+                                        <li>{{ data_get($item, 'Name') }}</li>
+                                    @endforeach
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{ $configurations->where('key', 'xero_leave_types')->pluck('name')->first() }}
+                            </td>
+                            <td>
+                                <ul>
+                                    @foreach($configurations->where('key', 'xero_leave_types')->pluck('value')->flatten(1)->toArray() as $item)
+                                        <li>{{ data_get($item, 'Name') }}</li>
+                                    @endforeach
+                                </ul>
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
                 </form>
 
             </div>

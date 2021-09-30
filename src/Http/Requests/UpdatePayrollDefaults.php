@@ -14,8 +14,8 @@ class UpdatePayrollDefaults extends FormRequest
     public function rules()
     {
         return [
-            'xero_default_time_and_a_half'  => 'required',
-            'xero_default_double_time'      => 'required',
+            'xero_default_time_and_a_half' => 'required',
+            'xero_default_double_time' => 'required',
             'xero_default_payroll_calendar' => 'required',
         ];
     }

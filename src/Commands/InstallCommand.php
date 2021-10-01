@@ -82,7 +82,7 @@ class InstallCommand extends Command
         if (Configuration::byKey('xero_default_ordinary_earnings_rate_id')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name' => 'Ordinary Earnings Rate (Time and a Half)',
+                                      'name' => 'Ordinary Earnings Rate',
                                       'key' => 'xero_default_ordinary_earnings_rate_id',
                                   ]);
         }

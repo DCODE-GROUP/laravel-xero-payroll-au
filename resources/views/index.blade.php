@@ -48,6 +48,19 @@
                         </tr>
                         <tr>
                             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                {{ $configurations->where('key', 'xero_default_ordinary_earnings_rate_id')->pluck('name')->first() }}
+                            </td>
+                            <td>
+                                <select name="xero_default_ordinary_earnings_rate_id" id="xero_default_ordinary_earnings_rate_id">
+                                    <option>@lang('xero-payroll-au-translations::xero-payroll-au.placeholder.default_select')</option>
+                                    @foreach($configurations->where('key', 'xero_earnings_rates')->pluck('value')->flatten(1)->toArray() as $option)
+                                        <option value="{{ data_get($option, 'EarningsRateID') }}" {{ $configurations->where('key', 'xero_default_ordinary_earnings_rate_id')->pluck('value')->first() == data_get($option, 'EarningsRateID') ? ' selected' : '' }}>{{ data_get($option, 'Name') }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                                 {{ $configurations->where('key', 'xero_default_time_and_a_half')->pluck('name')->first() }}
                             </td>
                             <td>

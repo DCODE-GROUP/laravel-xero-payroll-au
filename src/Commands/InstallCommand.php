@@ -79,10 +79,18 @@ class InstallCommand extends Command
                                   ]);
         }
 
+        if (Configuration::byKey('xero_default_ordinary_earnings_rate_id')->doesntExist()) {
+            Configuration::create([
+                                      'group' => $this->configurationGroup,
+                                      'name' => 'Ordinary Earnings Rate (Time and a Half)',
+                                      'key' => 'xero_default_ordinary_earnings_rate_id',
+                                  ]);
+        }
+
         if (Configuration::byKey('xero_default_time_and_a_half')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name' => 'Overtime earnings rate (Time and a half)',
+                                      'name' => 'Overtime Earnings Rate (Time and a half)',
                                       'key' => 'xero_default_time_and_a_half',
                                   ]);
         }
@@ -90,7 +98,7 @@ class InstallCommand extends Command
         if (Configuration::byKey('xero_default_double_time')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
-                                      'name' => 'Overtime earnings rate (Double time)',
+                                      'name' => 'Overtime Earnings Rate (Double Time)',
                                       'key' => 'xero_default_double_time',
                                   ]);
         }

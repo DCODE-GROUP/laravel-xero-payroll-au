@@ -71,7 +71,7 @@ class InstallCommand extends Command
                                   ]);
         }
 
-        if (Configuration::byKey('xero_default_payroll_')->doesntExist()) {
+        if (Configuration::byKey('xero_default_payroll_calendar')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
                                       'name' => 'Default Payroll Calendar',

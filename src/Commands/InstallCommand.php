@@ -35,7 +35,7 @@ class InstallCommand extends Command
         $this->info('Make sure the dcodegroup/laravel-configuration package has the database table installed');
 
         /**
-         * Need a way to check that the  CreateConfigurationTable does not exist in migrations
+         * Need a way to check that the CreateConfigurationTable does not exist in migrations
          */
         if (! Schema::hasTable('configurations') && ! class_exists('CreateConfigurationTable')) {
             $this->comment('Publishing Laravel Configurations Migrations');

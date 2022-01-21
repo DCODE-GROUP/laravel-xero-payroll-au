@@ -28,6 +28,10 @@ php artsian migrate
 
 Most of configuration has been set the fair defaults. However you can review the configuration file at `config/laravel-xero-payroll-au.php` and adjust as needed
 
+If you want to have the oauth screens appear within your sites layout ensure to configure the environment variable. eg.
+
+`LARAVEL_XERO_PAYROLL_AU_LAYOUT=layouts.admin`
+
 <p align="center"><img src="/art/config.png" alt="Preview of the configuration screen"></p>
 
 ## Usage

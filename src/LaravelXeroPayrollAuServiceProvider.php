@@ -72,8 +72,8 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
             'as' => Str::slug(config('laravel-xero-payroll-au.path'), '_').'.',
             'middleware' => config('laravel-xero-payroll-au.middleware', 'web'),
         ], function () {
-                         $this->loadRoutesFrom(__DIR__.'/../routes/xero_payroll_au.php');
-                     });
+            $this->loadRoutesFrom(__DIR__.'/../routes/xero_payroll_au.php');
+        });
     }
 
     /**

@@ -37,7 +37,7 @@ class InstallCommand extends Command
         /**
          * Need a way to check that the CreateConfigurationTable does not exist in migrations
          */
-        if (! Schema::hasTable('configurations') && ! class_exists('CreateConfigurationTable')) {
+        if (app()->environment('local') && ! Schema::hasTable('configurations') && ! class_exists('CreateConfigurationTable')) {
             $this->comment('Publishing Laravel Configurations Migrations');
             $this->callSilent('vendor:publish', ['--tag' => 'laravel-configurations-migrations']);
 
@@ -47,7 +47,7 @@ class InstallCommand extends Command
 
         $this->info('Store the configuration keys for this package');
 
-        if (Configuration::byKey('xero_leave_types')->doesntExist()) {
+        if (Configuration::query()->byKey('xero_leave_types')->doesntExist()) {
             Configuration::create([
                                       'group' => $this->configurationGroup,
                                       'name' => 'Leave Types',

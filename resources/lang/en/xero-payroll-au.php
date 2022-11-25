@@ -5,7 +5,7 @@ return [
 
     'buttons' => [
         'submit' => 'Save',
-        'sync'   => 'Pull current data from Xero',
+        'sync' => 'Pull current data from Xero',
     ],
 
     'placeholder' => [

@@ -33,7 +33,7 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-xero-payroll-au.php', 'laravel-xero-payroll-au');
+        $this->mergeConfigFrom(__DIR__.'/../config/laravel-xero-payroll-au.php', 'laravel-xero-payroll-au');
 
         $this->app->bind(BaseXeroPayrollAuService::class, function () {
             return new BaseXeroPayrollAuService(resolve(Application::class));
@@ -47,32 +47,32 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
      */
     protected function offerPublishing()
     {
-        $this->publishes([__DIR__ . '/../config/laravel-xero-payroll-au.php' => config_path('laravel-xero-payroll-au.php')], 'laravel-xero-payroll-au-config');
+        $this->publishes([__DIR__.'/../config/laravel-xero-payroll-au.php' => config_path('laravel-xero-payroll-au.php')], 'laravel-xero-payroll-au-config');
     }
 
     protected function registerCommands()
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                                InstallCommand::class,
-                            ]);
+                InstallCommand::class,
+            ]);
         }
     }
 
     protected function registerResources()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'xero-payroll-au-translations');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'xero-payroll-au-views');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'xero-payroll-au-translations');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'xero-payroll-au-views');
     }
 
     protected function registerRoutes()
     {
         Route::group([
-                         'prefix' => config('laravel-xero-payroll-au.path'),
-                         'as' => Str::slug(config('laravel-xero-payroll-au.path'), '_') . '.',
-                         'middleware' => config('laravel-xero-payroll-au.middleware', 'web'),
-                     ], function () {
-                         $this->loadRoutesFrom(__DIR__ . '/../routes/xero_payroll_au.php');
+            'prefix' => config('laravel-xero-payroll-au.path'),
+            'as' => Str::slug(config('laravel-xero-payroll-au.path'), '_').'.',
+            'middleware' => config('laravel-xero-payroll-au.middleware', 'web'),
+        ], function () {
+                         $this->loadRoutesFrom(__DIR__.'/../routes/xero_payroll_au.php');
                      });
     }
 

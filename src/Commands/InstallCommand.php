@@ -49,58 +49,58 @@ class InstallCommand extends Command
 
         if (Configuration::query()->byKey('xero_leave_types')->doesntExist()) {
             Configuration::create([
-                                      'group' => $this->configurationGroup,
-                                      'name' => 'Leave Types',
-                                      'key' => 'xero_leave_types',
-                                  ]);
+                'group' => $this->configurationGroup,
+                'name' => 'Leave Types',
+                'key' => 'xero_leave_types',
+            ]);
         }
 
         if (Configuration::byKey('xero_earnings_rates')->doesntExist()) {
             Configuration::create([
-                                      'group' => $this->configurationGroup,
-                                      'name' => 'Earnings Rates',
-                                      'key' => 'xero_earnings_rates',
-                                  ]);
+                'group' => $this->configurationGroup,
+                'name' => 'Earnings Rates',
+                'key' => 'xero_earnings_rates',
+            ]);
         }
 
         if (Configuration::byKey('xero_payroll_calendars')->doesntExist()) {
             Configuration::create([
-                                      'group' => $this->configurationGroup,
-                                      'name' => 'Payroll Calendars',
-                                      'key' => 'xero_payroll_calendars',
-                                  ]);
+                'group' => $this->configurationGroup,
+                'name' => 'Payroll Calendars',
+                'key' => 'xero_payroll_calendars',
+            ]);
         }
 
         if (Configuration::byKey('xero_default_payroll_calendar')->doesntExist()) {
             Configuration::create([
-                                      'group' => $this->configurationGroup,
-                                      'name' => 'Default Payroll Calendar',
-                                      'key' => 'xero_default_payroll_calendar',
-                                  ]);
+                'group' => $this->configurationGroup,
+                'name' => 'Default Payroll Calendar',
+                'key' => 'xero_default_payroll_calendar',
+            ]);
         }
 
         if (Configuration::byKey('xero_default_ordinary_earnings_rate_id')->doesntExist()) {
             Configuration::create([
-                                      'group' => $this->configurationGroup,
-                                      'name' => 'Ordinary Earnings Rate',
-                                      'key' => 'xero_default_ordinary_earnings_rate_id',
-                                  ]);
+                'group' => $this->configurationGroup,
+                'name' => 'Ordinary Earnings Rate',
+                'key' => 'xero_default_ordinary_earnings_rate_id',
+            ]);
         }
 
         if (Configuration::byKey('xero_default_time_and_a_half')->doesntExist()) {
             Configuration::create([
-                                      'group' => $this->configurationGroup,
-                                      'name' => 'Overtime Earnings Rate (Time and a half)',
-                                      'key' => 'xero_default_time_and_a_half',
-                                  ]);
+                'group' => $this->configurationGroup,
+                'name' => 'Overtime Earnings Rate (Time and a half)',
+                'key' => 'xero_default_time_and_a_half',
+            ]);
         }
 
         if (Configuration::byKey('xero_default_double_time')->doesntExist()) {
             Configuration::create([
-                                      'group' => $this->configurationGroup,
-                                      'name' => 'Overtime Earnings Rate (Double Time)',
-                                      'key' => 'xero_default_double_time',
-                                  ]);
+                'group' => $this->configurationGroup,
+                'name' => 'Overtime Earnings Rate (Double Time)',
+                'key' => 'xero_default_double_time',
+            ]);
         }
     }
 }

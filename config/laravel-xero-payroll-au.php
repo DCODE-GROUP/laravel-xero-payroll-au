@@ -39,4 +39,17 @@ return [
     |
     */
     'queue' => env('LARAVEL_XERO_PAYROLL_AU_QUEUE', 'default'),
+
+    /*
+     * --------------------------------------------------------------------------
+     * Laravel Xero Payroll AU Layout
+     * --------------------------------------------------------------------------
+     *
+     * The name of the base layout to wrap the pages in.
+     * The exposed routes will have to know the layout of the app in order to
+     * appear to look like the rest of the site. If one is not set then the internal one will be used.
+     *
+     */
+
+    'app_layout' => env('LARAVEL_XERO_PAYROLL_AU_LAYOUT', 'xero-payroll-au-views::layout'),
 ];

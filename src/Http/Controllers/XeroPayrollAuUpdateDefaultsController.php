@@ -12,8 +12,6 @@ class XeroPayrollAuUpdateDefaultsController extends Controller
 {
     public function __invoke(UpdatePayrollDefaults $request): RedirectResponse
     {
-        // Update the values here
-
         $keys = $request->keys();
 
         Arr::forget($keys, '0');

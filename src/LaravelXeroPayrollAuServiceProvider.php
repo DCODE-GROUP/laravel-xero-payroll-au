@@ -72,8 +72,8 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
             'as' => Str::slug(config('laravel-xero-payroll-au.path'), '_').'.',
             'middleware' => config('laravel-xero-payroll-au.middleware', 'web'),
         ], function () {
-                         $this->loadRoutesFrom(__DIR__.'/../routes/xero_payroll_au.php');
-                     });
+            $this->loadRoutesFrom(__DIR__.'/../routes/xero_payroll_au.php');
+        });
     }
 
     /**
@@ -95,7 +95,7 @@ class LaravelXeroPayrollAuServiceProvider extends ServiceProvider
 
                 // Try to put the js/css directly before the </head>
                 $pos = strripos($content, '</head>');
-                if (false !== $pos) {
+                if ($pos !== false) {
                     $content = substr($content, 0, $pos).$head.substr($content, $pos);
                 }
 
